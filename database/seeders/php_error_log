@@ -1,0 +1,16 @@
+[25-Jul-2022 16:28:43 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\PhoneSeeder.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\PhoneSeeder.php on line 10
+[25-Jul-2022 16:28:56 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\DatabaseSeeder.php:8
+Stack trace:
+#0 {main}
+  thrown in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\DatabaseSeeder.php on line 8
+[25-Jul-2022 16:28:58 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\TodolistSeeder.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\TodolistSeeder.php on line 10
+[25-Jul-2022 17:00:26 Asia/Dhaka] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\TodolistSeeder.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\xampp\htdocs\r49\laravel\todoapp\database\seeders\TodolistSeeder.php on line 10
