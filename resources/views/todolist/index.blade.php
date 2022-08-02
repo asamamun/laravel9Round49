@@ -16,9 +16,12 @@
     {{-- <h1>{{$pagetitle??"TodoLIsts Page"}}</h1> --}}
     <h1>{{$pagetitle??"TodoLIsts Page"}}</h1>
     <h1>Total Record : {{$lists->count()}}</h1>
+    <a href="{{url("test/todolist/create")}}">Create New todo list</a> | 
+    <a href="{{route("todolist.create")}}">Create New todo list</a>
+    @include('partial.flash')
+
     <ul>
-    @foreach ($lists as $list)
-    {{--  --}}
+    @foreach ($lists as $list)   
     <div class="card mb-5">
         <div class="card-header">
             {{$list->id}} - {{ $list->name}} - {{$list->description}}- {{$list->done}}
@@ -33,8 +36,7 @@
                     <li class="bg-warning"> No task available  </li>
                 @endforelse  
                  </ol>
-          </p>
-          
+          </p>          
         </div>
         <div class="card-body">
             <h5 class="card-title">Categories</h5>
@@ -64,6 +66,10 @@
           </div>
           <div class="card-footer">
             <a href="{{ url('test/todolist/'.$list->slug)}}">Details</a>
+            <a href="{{ url('test/todolist/'.$list->slug.'/edit')}}">Edit</a>
+            {!! Form::open(['method' => 'delete','route' => ['todolist.destroy', $list->slug]]) !!}
+            <input type="submit" value="Delete">
+            {!! Form::close() !!}
           </div>
       </div>
     {{--  --}}

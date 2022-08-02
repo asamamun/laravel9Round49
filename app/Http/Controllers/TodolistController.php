@@ -54,13 +54,13 @@ class TodolistController extends Controller
       $obj = Todolist::create($data);
       dd($obj); */
       //method 2
-      $m = new Todolist();
+      /* $m = new Todolist();
       $m->name = "test name".time();
       $m->description = "test desc".time();
       $m->done = "0";
-      dd($m->save());
+      dd($m->save()); */
       //echo $id;
-        // return view("todolist.create");
+        return view("todolist.create");
     }
 
     /**
@@ -71,7 +71,17 @@ class TodolistController extends Controller
      */
     public function store(StoreTodolistRequest $request)
     {
-        //
+        // dd(Todolist::create($request));
+        // dd($request->name);
+        $data = [
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'done'=>$request->done,
+        ];
+        $r = Todolist::create($data);
+        if($r){
+            return back()->with('message',"List Created!!!. Id number:".$r->id);
+        }
     }
 
     /**
@@ -95,7 +105,7 @@ class TodolistController extends Controller
      */
     public function edit(Todolist $todolist)
     {
-        //
+        return view("todolist.edit")->with('todolist',$todolist);
     }
 
     /**
@@ -107,7 +117,10 @@ class TodolistController extends Controller
      */
     public function update(UpdateTodolistRequest $request, Todolist $todolist)
     {
-        //
+       $todolist->name = $request->name;
+       $todolist->description = $request->description;
+       dd($todolist->save());
+
     }
 
     /**
@@ -118,7 +131,9 @@ class TodolistController extends Controller
      */
     public function destroy(Todolist $todolist)
     {
-        //
+        if(Todolist::destroy($todolist->id)){
+            return back()->with('message',$todolist->id. ' Deleted!!!!');
+        }
     }
 
     public function createslug(){
