@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,20 @@ use App\Http\Controllers\ContactController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view("/","welcome")->name("myhome");
-Route::view("/w","welcome");
+Route::middleware(['routelog'])->group(function () {
+    Route::view("/","welcome")->name("myhome");
+    Route::view("/w","welcome");
+    Route::get('/profile', [ProfileController::class,'index'])->name("profile");
+Route::post('/profile', [ProfileController::class,'update'])->name("updateprofile");
+Route::get('/test', [TestController::class,'index'])->name("t");
+
+Route::get("/slugphone",[PhoneController::class,'slugall']);
+});
+
+Route::middleware(['admin'])->group(function () {
+    Route::resource("/phone",PhoneController::class);
+});
+
 // Route::any('/', function () {
 //     return view('welcome');
 // });
@@ -29,10 +42,10 @@ Route::view("/w","welcome");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','routelog'])->name('dashboard');
 
 
-Route::get('/test', [TestController::class,'index'])->name("t");
+
 
 
 Route::get('/posts/{post}/comments/{comment?}',[TestController::class,'postcomment'])
@@ -55,8 +68,7 @@ Route::prefix("test")->middleware(['auth'])->group(function () {
     Route::get("/listcreateslug",[TodolistController::class,'createslug']);
 });
 
-Route::resource("/phone",PhoneController::class);
-Route::get("/slugphone",[PhoneController::class,'slugall']);
+
 //relations
 Route::get("/onetoone",[RelationController::class,'onetoone']);
 //contact

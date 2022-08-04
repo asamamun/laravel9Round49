@@ -33,11 +33,7 @@
         </header>
       <div class="row">
         <div class="col-9">
-          @if(Session::has('message'))
-          <div class="alert alert-success">
-              {{Session::get('message')}}
-          </div>
-          @endif
+          @include('partial.flash')
             <main>
                 @yield('content')
             </main>

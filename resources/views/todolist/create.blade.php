@@ -1,6 +1,7 @@
 @extends('layouts.dark')
 @section('content')
 
+@include("partial.error")
 {{Form::open(['route' => 'todolist.store'])}}
 
 @include('todolist.form')

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class UpdateTodolistRequest extends FormRequest
+class ProfilePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class UpdateTodolistRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -24,8 +25,10 @@ class UpdateTodolistRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5',
-            'description' => 'required|min:5'
+            'fullname' => 'required|min:5',
+            'phone' => 'required|min:10',
+            'image' => 'required',
+            'bloodgroup' => 'required|min:2',
             ];
     }
 }
